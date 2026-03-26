@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if page.title %}{{ page.title }} - {% endif %}北艾的小窝.exe</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <div class="desktop">
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="badge">欢迎来到 <span class="pink">北艾的小窝.exe</span> ✦ Win98 千禧年特别版</div>
+        <div class="menu">
+          <a class="btn98" href="{{ '/' | relative_url }}">首页</a>
+          <a class="btn98" href="{{ '/lyrics/' | relative_url }}">歌词页</a>
+          <a class="btn98" href="{{ '/thoughts/' | relative_url }}">感想页</a>
+          <a class="btn98" href="{{ '/links/' | relative_url }}">链接页</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="neon-bar-wrap">
+      <div class="neon-bar">
+        <div class="neon-inner">
+          <marquee scrollamount="8" behavior="alternate">
+            <span class="neon-text">★ 北艾祝你天天被爱 ★ 北艾祝你天天被爱 ★ 北艾祝你天天被爱 ★</span>
+          </marquee>
+        </div>
+      </div>
+    </div>
+
+    {% if page.home %}
+    <div class="grid">
+      {{ content }}
+    </div>
+    {% else %}
+    <div class="grid">
+      <section class="window page-main">
+        <div class="titlebar">
+          <div class="title-left">
+            <span class="title-icon"></span>
+            <span>{{ page.window_title | default: page.title }}</span>
+          </div>
+          <div class="title-buttons">
+            <span class="title-button">_</span>
+            <span class="title-button">□</span>
+            <span class="title-button">×</span>
+          </div>
+        </div>
+        <div class="content prose">
+          {{ content }}
+        </div>
+      </section>
+
+      <aside class="window page-side">
+        <div class="titlebar">
+          <div class="title-left">
+            <span class="title-icon"></span>
+            <span>quick_menu.txt</span>
+          </div>
+          <div class="title-buttons">
+            <span class="title-button">_</span>
+            <span class="title-button">□</span>
+            <span class="title-button">×</span>
+          </div>
+        </div>
+        <div class="content">
+          <p><b>快速导航</b></p>
+          <ul class="icon-list">
+            <li><a href="{{ '/' | relative_url }}">返回首页</a></li>
+            <li><a href="{{ '/lyrics/' | relative_url }}">打开歌词页</a></li>
+            <li><a href="{{ '/thoughts/' | relative_url }}">打开感想页</a></li>
+            <li><a href="{{ '/links/' | relative_url }}">打开链接页</a></li>
+          </ul>
+          <div class="notice">
+            以后你主要改这些 <b>.md</b> 文件，不用再去翻整页 HTML。
+          </div>
+        </div>
+      </aside>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="mini-player" id="miniPlayer">
+    <div class="titlebar">
+      <div class="title-left">
+        <span class="title-icon"></span>
+        <span id="playerTitle">mini_player.exe</span>
+      </div>
+      <div class="title-buttons">
+        <span class="title-button real-btn" id="toggleMiniBtn">_</span>
+        <span class="title-button">□</span>
+        <span class="title-button">×</span>
+      </div>
+    </div>
+
+    <div class="mini-collapsed" id="miniCollapsed">
+      <button class="btn98" id="collapsedPlayPauseBtn" type="button">播放</button>
+      <div class="mini-collapsed-name" id="collapsedSongName">第一首歌</div>
+    </div>
+
+    <div class="mini-player-body">
+      <div class="mini-now" id="nowPlaying">当前歌曲：第一首歌</div>
+      <audio id="audioPlayer" controls preload="metadata"></audio>
+      <div class="mini-controls">
+        <button class="btn98" id="prevBtn" type="button">◀</button>
+        <button class="btn98" id="playPauseBtn" type="button">播放</button>
+        <button class="btn98" id="nextBtn" type="button">▶</button>
+      </div>
+      <ul class="mini-playlist" id="playlist"></ul>
+    </div>
+  </div>
+
+  <div class="footerbar">
+    <div class="start">Start</div>
+    <div class="task">北艾的小窝.exe - GitHub Pages</div>
+    <div class="clock" id="clock">00:00</div>
+  </div>
+
+  <script src="{{ '/assets/js/player.js' | relative_url }}"></script>
+</body>
+</html>
