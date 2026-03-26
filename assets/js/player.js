@@ -26,8 +26,32 @@ const prevBtn = document.getElementById("prevBtn");
 const playPauseBtn = document.getElementById("playPauseBtn");
 const nextBtn = document.getElementById("nextBtn");
 
+const progressOuter = document.getElementById("progressOuter");
+const progressInner = document.getElementById("progressInner");
+const currentTimeText = document.getElementById("currentTime");
+const totalTimeText = document.getElementById("totalTime");
+
+const progressOuter = document.getElementById("progressOuter");
+const progressInner = document.getElementById("progressInner");
+const currentTimeText = document.getElementById("currentTime");
+const totalTimeText = document.getElementById("totalTime");
+
 let currentTrackIndex = 0;
 let isMinimized = false;
+
+function formatTime(seconds) {
+  if (!isFinite(seconds)) return "00:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+}
+
+function formatTime(seconds) {
+  if (!isFinite(seconds)) return "00:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+}
 
 function renderPlaylist() {
   playlist.innerHTML = "";
@@ -60,9 +84,12 @@ function loadTrack(index, autoPlay = false) {
   currentTrackIndex = (index + tracks.length) % tracks.length;
   const track = tracks[currentTrackIndex];
   audioPlayer.src = track.file;
-  nowPlaying.textContent = "当前歌曲：" + track.title;
-  collapsedSongName.textContent = track.title;
-  renderPlaylist();
+nowPlaying.textContent = "当前歌曲：" + track.title;
+collapsedSongName.textContent = track.title;
+currentTimeText.textContent = "00:00";
+totalTimeText.textContent = "00:00";
+progressInner.style.width = "0%";
+renderPlaylist();
 
   if (autoPlay) {
     audioPlayer.play().catch(() => {});
@@ -106,6 +133,29 @@ audioPlayer.addEventListener("play", () => {
 audioPlayer.addEventListener("pause", () => {
   playPauseBtn.textContent = "播放";
   collapsedPlayPauseBtn.textContent = "播放";
+});
+
+audioPlayer.addEventListener("loadedmetadata", () => {
+  totalTimeText.textContent = formatTime(audioPlayer.duration);
+});
+
+audioPlayer.addEventListener("timeupdate", () => {
+  currentTimeText.textContent = formatTime(audioPlayer.currentTime);
+
+  if (audioPlayer.duration) {
+    const percent = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+    progressInner.style.width = percent + "%";
+  } else {
+    progressInner.style.width = "0%";
+  }
+});
+
+progressOuter.addEventListener("click", (e) => {
+  const rect = progressOuter.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+  if (audioPlayer.duration) {
+    audioPlayer.currentTime = percent * audioPlayer.duration;
+  }
 });
 
 audioPlayer.addEventListener("ended", () => {

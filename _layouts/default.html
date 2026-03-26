@@ -716,7 +716,19 @@
 
     <div class="mini-player-body">
       <div class="mini-now" id="nowPlaying">当前歌曲：第一首歌</div>
-      <audio id="audioPlayer" controls preload="metadata"></audio>
+      <audio id="audioPlayer" preload="metadata"></audio>
+
+<div class="player-progress-wrap">
+  <div class="player-time-row">
+    <span id="currentTime">00:00</span>
+    <span id="totalTime">00:00</span>
+  </div>
+
+  <div class="player-progress-outer" id="progressOuter">
+    <div class="player-progress-inner" id="progressInner"></div>
+  </div>
+</div>
+
       <div class="mini-controls">
         <button class="btn98" id="prevBtn" type="button">◀</button>
         <button class="btn98" id="playPauseBtn" type="button">播放</button>
