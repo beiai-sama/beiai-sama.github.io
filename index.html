@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>北艾的小窝</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 0, 170, 0.35), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(0, 255, 255, 0.25), transparent 25%),
+        radial-gradient(circle at 30% 80%, rgba(255, 255, 0, 0.18), transparent 25%),
+        linear-gradient(135deg, #120022, #230047, #002b59, #1a0036);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+      padding: 24px 0 60px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.18);
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      transform: translateY(-2px) scale(1.03);
+      background: rgba(255,255,255,0.2);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(40px, 8vw, 84px);
+      line-height: 1;
+      text-shadow: 0 0 24px rgba(255,255,255,0.35);
+    }
+
+    .hero p {
+      margin: 0 auto;
+      max-width: 720px;
+      font-size: 18px;
+      opacity: 0.92;
+      line-height: 1.8;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff2ea6, #8f6bff, #00cfff);
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 32px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 24px;
+      padding: 22px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.22);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+
+    .card p {
+      line-height: 1.8;
+      opacity: 0.95;
+    }
+
+    .section {
+      margin-top: 26px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin: 0 0 14px;
+      text-shadow: 0 0 18px rgba(255,255,255,0.2);
+    }
+
+    .post {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 14px;
+      line-height: 1.9;
+    }
+
+    .post h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 32px;
+      opacity: 0.8;
+      font-size: 14px;
+    }
+
+    .glow {
+      color: #ffd4f3;
+      text-shadow: 0 0 10px rgba(255, 104, 193, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="#about">关于我</a>
+      <a href="#lyrics">歌词角落</a>
+      <a href="#thoughts">感想碎片</a>
+      <a href="#contact">联系</a>
+    </nav>
+
+    <section class="hero">
+      <h1>北艾的小窝</h1>
+      <p>
+        欢迎来到我的个人网站。这里放歌词、感想、碎碎念、灵感残片，
+        还有那些半夜突然闪出来的句子和颜色。
+      </p>
+      <div class="badge">花花绿绿试营业中 ✨</div>
+    </section>
+
+    <section class="grid">
+      <div class="card" id="about">
+        <h2>关于我</h2>
+        <p>
+          你好，我是北艾。这里是我在互联网给自己搭的小角落。
+          我想把喜欢的句子、歌词、感想，还有一些乱七八糟但很真诚的东西放在这里。
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>这个站会写什么</h2>
+        <p>
+          歌词、日记、作品灵感、歌姬相关碎碎念、生活感受，
+          以及一些“明明说不清但就是想留下来”的文字。
+        </p>
+      </div>
+
+      <div class="card" id="contact">
+        <h2>联系</h2>
+        <p>
+          你可以先把这里改成你的 B站、网易云、邮箱、QQ 或其他主页链接。
+          之后再慢慢补充。
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="lyrics">
+      <h2 class="section-title">歌词角落</h2>
+      <div class="post">
+        <h3 class="glow">《这里写你的标题》</h3>
+        <p>
+          这里可以放你的一段歌词。<br>
+          比如：<br>
+          “到底为什么要歌唱 / 我又是谁的笔下创 / 不过是转递信息的工具……”<br>
+          你以后每写一篇，就复制一个这个模块，改标题和正文就行。
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="thoughts">
+      <h2 class="section-title">感想碎片</h2>
+      <div class="post">
+        <h3>第一篇感想</h3>
+        <p>
+          今天终于把这个站搭出来了。它可能还很简陋，但至少已经不是“我想要”，
+          而是“我有了”。以后这里会越来越像我。
+        </p>
+      </div>
+
+      <div class="post">
+        <h3>第二篇感想</h3>
+        <p>
+          你也可以在这里写你对歌曲、歌词、作品、生活的看法。
+          想写长文就继续往下加，想写短句就一句一句堆起来。
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      © 2026 北艾 · 由 GitHub Pages 免费托管
+    </div>
+  </div>
+</body>
+</html>
