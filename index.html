@@ -5,71 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>北艾的小窝.exe</title>
   <style>
-    .neon-bar-wrap {
-  margin: 14px 0 18px;
-}
-
-.neon-bar {
-  background: linear-gradient(90deg, #ff00a6, #00e5ff, #7cff00, #ffe600, #ff00a6);
-  background-size: 400% 100%;
-  padding: 4px;
-  border-top: 2px solid #ffffff;
-  border-left: 2px solid #ffffff;
-  border-right: 2px solid #404040;
-  border-bottom: 2px solid #404040;
-  animation: rainbowMove 6s linear infinite;
-  box-shadow:
-    0 0 8px rgba(255, 0, 166, 0.8),
-    0 0 14px rgba(0, 229, 255, 0.8),
-    0 0 20px rgba(124, 255, 0, 0.7);
-}
-
-.neon-inner {
-  background: #000;
-  padding: 10px 12px;
-  overflow: hidden;
-  border-top: 2px solid #404040;
-  border-left: 2px solid #404040;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-}
-
-.neon-text {
-  font-family: "Arial Black", "Microsoft YaHei", sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-shadow:
-    0 0 4px #fff,
-    0 0 8px #ff00a6,
-    0 0 16px #ff00a6,
-    0 0 24px #00e5ff,
-    0 0 32px #00e5ff;
-  animation: neonBlink 1s infinite alternate;
-  white-space: nowrap;
-}
-
-@keyframes neonBlink {
-  0% {
-    opacity: 1;
-    filter: brightness(1);
-  }
-  100% {
-    opacity: 0.72;
-    filter: brightness(1.35);
-  }
-}
-
-@keyframes rainbowMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
     :root {
       --bg1: #008080;
       --bg2: #0b3d91;
@@ -92,15 +27,6 @@
     }
 
     body {
-      <div class="neon-bar-wrap">
-  <div class="neon-bar">
-    <div class="neon-inner">
-      <marquee scrollamount="8" behavior="alternate">
-        <span class="neon-text">★ 北艾祝你天天被爱 ★ 北艾祝你天天被爱 ★ 北艾祝你天天被爱 ★</span>
-      </marquee>
-    </div>
-  </div>
-</div>
       margin: 0;
       color: var(--text);
       font-family: Tahoma, "Microsoft YaHei", sans-serif;
@@ -180,6 +106,72 @@
       border-left: 2px solid var(--win-darker);
       border-right: 2px solid var(--win-light);
       border-bottom: 2px solid var(--win-light);
+    }
+
+    .neon-bar-wrap {
+      margin: 10px 0 18px;
+    }
+
+    .neon-bar {
+      background: linear-gradient(90deg, #ff00a6, #00e5ff, #7cff00, #ffe600, #ff00a6);
+      background-size: 400% 100%;
+      padding: 4px;
+      border-top: 2px solid #ffffff;
+      border-left: 2px solid #ffffff;
+      border-right: 2px solid #404040;
+      border-bottom: 2px solid #404040;
+      animation: rainbowMove 6s linear infinite;
+      box-shadow:
+        0 0 8px rgba(255, 0, 166, 0.8),
+        0 0 14px rgba(0, 229, 255, 0.8),
+        0 0 20px rgba(124, 255, 0, 0.7);
+    }
+
+    .neon-inner {
+      background: #000;
+      padding: 10px 12px;
+      overflow: hidden;
+      border-top: 2px solid #404040;
+      border-left: 2px solid #404040;
+      border-right: 2px solid #ffffff;
+      border-bottom: 2px solid #ffffff;
+    }
+
+    .neon-text {
+      font-family: "Arial Black", "Microsoft YaHei", sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow:
+        0 0 4px #fff,
+        0 0 8px #ff00a6,
+        0 0 16px #ff00a6,
+        0 0 24px #00e5ff,
+        0 0 32px #00e5ff;
+      animation: neonBlink 1s infinite alternate;
+      white-space: nowrap;
+    }
+
+    @keyframes neonBlink {
+      0% {
+        opacity: 1;
+        filter: brightness(1);
+      }
+      100% {
+        opacity: 0.72;
+        filter: brightness(1.35);
+      }
+    }
+
+    @keyframes rainbowMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
     }
 
     .grid {
@@ -424,6 +416,10 @@
       .topbar-inner {
         justify-content: flex-start;
       }
+
+      .neon-text {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
@@ -437,6 +433,16 @@
           <a class="btn98" href="#lyrics">歌词角落</a>
           <a class="btn98" href="#thoughts">感想碎片</a>
           <a class="btn98" href="#links">链接</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="neon-bar-wrap">
+      <div class="neon-bar">
+        <div class="neon-inner">
+          <marquee scrollamount="8" behavior="alternate">
+            <span class="neon-text">★ 北艾祝你天天被爱 ★ 北艾祝你天天被爱 ★ 北艾祝你天天被爱 ★</span>
+          </marquee>
         </div>
       </div>
     </div>
@@ -567,12 +573,13 @@
         </div>
         <div class="content">
           <p><b>可以把这里改成你的链接：</b></p>
-         <ul class="icon-list">
-         <li><a href="https://space.bilibili.com/671645160?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">B站主页</a></li>
-         <li><a href="https://music.163.com/#/artist?id=55970053" target="_blank" rel="noopener noreferrer">网易云</a></li>
-         <li><a href="mailto:3389205548@qq.com">邮箱</a></li>
-         <li><a href="https://www.youtube.com/@KathleenJacksonSkjshsh" target="_blank" rel="noopener noreferrer">YOUTUBE</a></li>
-       </ul>
+          <ul class="icon-list">
+            <li><a href="https://space.bilibili.com/671645160?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">B站主页</a></li>
+            <li><a href="https://music.163.com/#/artist?id=55970053" target="_blank" rel="noopener noreferrer">网易云</a></li>
+            <li><a href="mailto:3389205548@qq.com">邮箱</a></li>
+            <li><a href="https://www.youtube.com/@KathleenJacksonSkjshsh" target="_blank" rel="noopener noreferrer">YOUTUBE</a></li>
+          </ul>
+          <p class="small">邮箱会调用邮件程序。YouTube 在国内网络环境下无法正常打开。</p>
         </div>
       </section>
 
@@ -593,7 +600,8 @@
           <ul class="icon-list">
             <li>v1.0：网站成功上线</li>
             <li>v1.1：改成 Windows 98 / 千禧年风格</li>
-            <li>v1.2：等待你继续加入更多歌词和感想</li>
+            <li>v1.2：加入霓虹闪烁祝福条</li>
+            <li>v1.3：等待你继续加入更多歌词和感想</li>
           </ul>
         </div>
       </section>
