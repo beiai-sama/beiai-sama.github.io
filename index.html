@@ -240,6 +240,18 @@
       line-height: 1;
     }
 
+    .title-button.real-btn {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .title-button.real-btn:active {
+      border-top: 2px solid var(--win-darker);
+      border-left: 2px solid var(--win-darker);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+    }
+
     .content {
       padding: 14px;
       background: #cfcfcf;
@@ -289,8 +301,7 @@
 
     .marquee-box,
     .notice,
-    .textbox,
-    .now-playing {
+    .textbox {
       background: white;
       padding: 10px;
       border-top: 2px solid var(--win-dark);
@@ -345,6 +356,7 @@
       right: 16px;
       bottom: 56px;
       width: 280px;
+      max-width: calc(100vw - 24px);
       z-index: 999;
       background: var(--win-bg);
       border-top: 2px solid var(--win-light);
@@ -354,6 +366,10 @@
       box-shadow: 4px 4px 0 rgba(0,0,0,0.35);
     }
 
+    .mini-player.minimized {
+      width: 220px;
+    }
+
     .mini-player-body {
       padding: 10px;
       background: #cfcfcf;
@@ -361,6 +377,41 @@
       border-left: 2px solid #dfdfdf;
       border-right: 2px solid #9a9a9a;
       border-bottom: 2px solid #9a9a9a;
+    }
+
+    .mini-player.minimized .mini-player-body {
+      display: none;
+    }
+
+    .mini-collapsed {
+      display: none;
+      padding: 8px;
+      background: #cfcfcf;
+      border-top: 2px solid #dfdfdf;
+      border-left: 2px solid #dfdfdf;
+      border-right: 2px solid #9a9a9a;
+      border-bottom: 2px solid #9a9a9a;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .mini-player.minimized .mini-collapsed {
+      display: flex;
+    }
+
+    .mini-collapsed-name {
+      flex: 1;
+      min-width: 0;
+      background: white;
+      padding: 6px 8px;
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border-top: 2px solid var(--win-dark);
+      border-left: 2px solid var(--win-dark);
+      border-right: 2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
     }
 
     .mini-now {
@@ -513,6 +564,10 @@
         width: calc(100vw - 24px);
         right: 12px;
         bottom: 56px;
+      }
+
+      .mini-player.minimized {
+        width: calc(100vw - 24px);
       }
     }
   </style>
@@ -696,25 +751,31 @@
             <li>v1.1：改成 Windows 98 / 千禧年风格</li>
             <li>v1.2：加入霓虹闪烁祝福条</li>
             <li>v1.3：加入右下角浮窗播放器</li>
-            <li>v1.4：等待你继续加入更多歌词和感想</li>
+            <li>v1.4：播放器支持最小化</li>
           </ul>
         </div>
       </section>
     </div>
   </div>
 
-  <div class="mini-player">
+  <div class="mini-player" id="miniPlayer">
     <div class="titlebar">
       <div class="title-left">
         <span class="title-icon"></span>
-        <span>mini_player.exe</span>
+        <span id="playerTitle">mini_player.exe</span>
       </div>
       <div class="title-buttons">
-        <span class="title-button">_</span>
+        <span class="title-button real-btn" id="toggleMiniBtn">_</span>
         <span class="title-button">□</span>
         <span class="title-button">×</span>
       </div>
     </div>
+
+    <div class="mini-collapsed" id="miniCollapsed">
+      <button class="btn98" id="collapsedPlayPauseBtn" type="button">播放</button>
+      <div class="mini-collapsed-name" id="collapsedSongName">第一首歌</div>
+    </div>
+
     <div class="mini-player-body">
       <div class="mini-now" id="nowPlaying">当前歌曲：第一首歌</div>
       <audio id="audioPlayer" controls preload="metadata"></audio>
@@ -749,6 +810,12 @@
       { title: "在那栀子花还没有枯萎的时候", file: "+50cents.mp3" }
     ];
 
+    const miniPlayer = document.getElementById("miniPlayer");
+    const toggleMiniBtn = document.getElementById("toggleMiniBtn");
+    const playerTitle = document.getElementById("playerTitle");
+    const collapsedPlayPauseBtn = document.getElementById("collapsedPlayPauseBtn");
+    const collapsedSongName = document.getElementById("collapsedSongName");
+
     const audioPlayer = document.getElementById("audioPlayer");
     const playlist = document.getElementById("playlist");
     const nowPlaying = document.getElementById("nowPlaying");
@@ -757,6 +824,7 @@
     const nextBtn = document.getElementById("nextBtn");
 
     let currentTrackIndex = 0;
+    let isMinimized = false;
 
     function renderPlaylist() {
       playlist.innerHTML = "";
@@ -773,17 +841,35 @@
       });
     }
 
+    function syncMiniState() {
+      if (isMinimized) {
+        miniPlayer.classList.add("minimized");
+        toggleMiniBtn.textContent = "+";
+        playerTitle.textContent = "mini_player.exe [最小化]";
+      } else {
+        miniPlayer.classList.remove("minimized");
+        toggleMiniBtn.textContent = "_";
+        playerTitle.textContent = "mini_player.exe";
+      }
+    }
+
     function loadTrack(index, autoPlay = false) {
       currentTrackIndex = (index + tracks.length) % tracks.length;
       const track = tracks[currentTrackIndex];
       audioPlayer.src = track.file;
       nowPlaying.textContent = "当前歌曲：" + track.title;
+      collapsedSongName.textContent = track.title;
       renderPlaylist();
 
       if (autoPlay) {
         audioPlayer.play().catch(() => {});
       }
     }
+
+    toggleMiniBtn.addEventListener("click", () => {
+      isMinimized = !isMinimized;
+      syncMiniState();
+    });
 
     prevBtn.addEventListener("click", () => {
       loadTrack(currentTrackIndex - 1, true);
@@ -801,12 +887,22 @@
       }
     });
 
+    collapsedPlayPauseBtn.addEventListener("click", () => {
+      if (audioPlayer.paused) {
+        audioPlayer.play().catch(() => {});
+      } else {
+        audioPlayer.pause();
+      }
+    });
+
     audioPlayer.addEventListener("play", () => {
       playPauseBtn.textContent = "暂停";
+      collapsedPlayPauseBtn.textContent = "暂停";
     });
 
     audioPlayer.addEventListener("pause", () => {
       playPauseBtn.textContent = "播放";
+      collapsedPlayPauseBtn.textContent = "播放";
     });
 
     audioPlayer.addEventListener("ended", () => {
@@ -814,6 +910,7 @@
     });
 
     loadTrack(0, false);
+    syncMiniState();
   </script>
 </body>
 </html>
