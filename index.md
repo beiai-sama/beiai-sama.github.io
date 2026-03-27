@@ -75,7 +75,7 @@ home: true
     <div class="post">
       <h3>歌词角落</h3>
       <p>以后歌词主要写在单独的二级页面里，不再塞在首页一大坨里。</p>
-      <p><a class="btn98" href="/lyrics/">打开歌词页</a></p>
+      <p><a class="btn98" href="{{ '/lyrics/' | relative_url }}">打开歌词页</a></p>
     </div>
 
     <div class="post">
@@ -101,7 +101,7 @@ home: true
     <div class="textbox">
       <p><b>感想碎片</b></p>
       <p>你的日记、随笔、作品感想，以后都可以放到单独的感想页。</p>
-      <p><a class="btn98" href="/thoughts/">打开感想页</a></p>
+      <p><a class="btn98" href="{{ '/thoughts/' | relative_url }}">打开感想页</a></p>
     </div>
     <div class="textbox">
       <p><b>现在这套更像正经网站了</b></p>
@@ -130,7 +130,7 @@ home: true
       <li><a href="mailto:3389205548@qq.com">邮箱</a></li>
       <li><a href="https://www.youtube.com/@KathleenJacksonSkjshsh" target="_blank" rel="noopener noreferrer">YOUTUBE</a></li>
     </ul>
-    <p><a class="btn98" href="/links/">打开链接页</a></p>
+    <p><a class="btn98" href="{{ '/links/' | relative_url }}">打开链接页</a></p>
   </div>
 </section>
 
@@ -155,7 +155,8 @@ home: true
       <li>v1.3：加入右下角浮窗播放器</li>
       <li>v1.4：播放器支持最小化</li>
       <li>v1.5：新增二级页面</li>
-      <li>v1.6：以后主要用 Markdown 写内容</li>
+      <li>v1.6：改成 Markdown 写内容</li>
+      <li>v1.7：播放器改成自定义进度条</li>
     </ul>
   </div>
 </section>
