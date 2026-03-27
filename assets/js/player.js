@@ -31,20 +31,8 @@ const progressInner = document.getElementById("progressInner");
 const currentTimeText = document.getElementById("currentTime");
 const totalTimeText = document.getElementById("totalTime");
 
-const progressOuter = document.getElementById("progressOuter");
-const progressInner = document.getElementById("progressInner");
-const currentTimeText = document.getElementById("currentTime");
-const totalTimeText = document.getElementById("totalTime");
-
 let currentTrackIndex = 0;
 let isMinimized = false;
-
-function formatTime(seconds) {
-  if (!isFinite(seconds)) return "00:00";
-  const m = Math.floor(seconds / 60);
-  const s = Math.floor(seconds % 60);
-  return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
-}
 
 function formatTime(seconds) {
   if (!isFinite(seconds)) return "00:00";
@@ -83,13 +71,15 @@ function syncMiniState() {
 function loadTrack(index, autoPlay = false) {
   currentTrackIndex = (index + tracks.length) % tracks.length;
   const track = tracks[currentTrackIndex];
+
   audioPlayer.src = track.file;
-nowPlaying.textContent = "当前歌曲：" + track.title;
-collapsedSongName.textContent = track.title;
-currentTimeText.textContent = "00:00";
-totalTimeText.textContent = "00:00";
-progressInner.style.width = "0%";
-renderPlaylist();
+  nowPlaying.textContent = "当前歌曲：" + track.title;
+  collapsedSongName.textContent = track.title;
+  currentTimeText.textContent = "00:00";
+  totalTimeText.textContent = "00:00";
+  progressInner.style.width = "0%";
+
+  renderPlaylist();
 
   if (autoPlay) {
     audioPlayer.play().catch(() => {});
